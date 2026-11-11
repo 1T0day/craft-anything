@@ -144,7 +144,6 @@ cheapest help we can give anyone, so nothing below should hold it up for long.
       driver that crashes while its device is created crashes the retry too. wgpu has no way to
       skip hardware adapters; needs a different route (another renderer, or a helper that starts
       the app with only WARP visible)
-- [x] Add to `docs/releasing.md`: before publishing, a Deep build through Claude Code from the
 - [x] #794: on some systems DX12 refuses egui's own pipeline (`egui_pipeline`, 0x80070057 from
       `CreatePipelineState`) on AMD, Intel and NVIDIA cards and on WARP too (lightcraft#812,
       pdfcraft#1046, wgpu#10771), so the software retry failed the same way every start, and the
@@ -158,7 +157,7 @@ cheapest help we can give anyone, so nothing below should hold it up for long.
 - [x] A window that fails after it was shown no longer says "The next start will draw with …": its
       start mark is already gone, so the next start draws as before (#909 review); the dialog says
       it only when the window was never shown (`next_start_note`) — claimed: 00xJS, branch bugfix/r5.1-retry-text-after-shown
-- [ ] Add to `docs/releasing.md`: before publishing, a Deep build through Claude Code from the
+- [x] Add to `docs/releasing.md`: before publishing, a Deep build through Claude Code from the
       finished package, on a Mac and on Windows. Starting the CLI from the package (#91) doesn't
       show whether Claude Code accepts its tools — PR #982; claimed: doubektomas,
       branch docs/r5.1-packaged-deep-build-check. The checklist is documented; live package runs
@@ -257,9 +256,6 @@ only when it's green and a maintainer has fully reviewed it, code as well as wor
       tests ran at once: a script just written can't start while another thread's child still
       holds it open ("Text file busy"). #787 tries again: on Linux 4 of 72 runs failed before
       it, none after
-- [ ] `a_remote_query_expands_only_the_remote_working_directory` (ai crate) fails on a Mac: the
-      temp folder is `/var/…`, a link to `/private/var/…`, and the shell's `$PWD` gives the second.
-      Compare with the folder's canonical path
 - [ ] Revisit the two advisory exceptions in `deny.toml`: `rsa` (no fix; we only verify with public
       keys) when rsa 0.10 lands, and unmaintained `zbus_names`/`zvariant` (Linux-only via keyring
       and accesskit) when those move on. `deny.toml`'s comments pointed at R0.3, which never held
