@@ -2595,6 +2595,11 @@ Owner: open · Status: in progress
       lists without limit.
       — claimed: AlexJoaquimPereira, branch bugfix/r3.12-js-fallback-list-bounds
 
+- [x] A source-to-bundle comparison with more scripts than `max_rows` now says how many it examined
+      (`scripts_examined`), keeps the unclaimed-unit total complete, marks `rows_capped`, and adds a
+      partial-coverage limitation, so a capped window's counts are never read as totals.
+      — claimed: AlexJoaquimPereira, branch bugfix/r3.12-source-bundle-compare-totals
+
 
 ### R3.13 Web inspection correctness
 Owner: open · Status: in progress
