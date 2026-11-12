@@ -1136,7 +1136,19 @@ fn read_source_map(
     budget: &mut craft_anything_formats::sourcemap::InventoryLimits,
     limitations: &mut Vec<(String, String)>,
 ) {
-    match craft_anything_formats::sourcemap::parse(bytes, craft_anything_formats::sourcemap::Limits::default()) {
+    use craft_anything_formats::sourcemap::{Limits, SourceMapError, parse, parse_sources};
+    let map = match parse(bytes, Limits::default()) {
+        // The mappings or section offsets are broken, but the list of sources may still be
+        // whole, and the list is all that is kept here.
+        Err(SourceMapError::BadMappings(_) | SourceMapError::BadSections) => parse_sources(bytes, Limits::default()).inspect(|_| {
+            limitations.push((
+                "source_map_mappings_unreadable".into(),
+                format!("The source map for {script} has malformed mappings or section offsets; its sources are listed, but its mappings were not read."),
+            ));
+        }),
+        read => read,
+    };
+    match map {
         Ok(map) => {
             let inventory = map.source_inventory(craft_anything_formats::sourcemap::InventoryLimits {
                 max_sources: budget.max_sources.min(5000),
