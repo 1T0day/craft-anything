@@ -1778,6 +1778,9 @@ Owner: open · Status: in progress
       — claimed: Afloat16, branch bugfix/r3.12-module-role-queue
 - [x] Resolve webpack module-loader calls by the wrapper parameter's binding, so nested parameters and local variables with the same name do not create dependency edges.
       — claimed: Afloat16, branch bugfix/r3.12-webpack-require-bindings
+- [x] An application graph counts the edges its cap drops, reports an `edge_cap` limitation, and
+      `js_app_map` marks coverage partial when the graph was cut by its node or edge cap.
+      — claimed: AlexJoaquimPereira, branch bugfix/r3.12-app-graph-edge-cap
 - [x] Keep sequence splitting from introducing JavaScript strict-mode directives.
       — claimed: Plastic-time, branch rrfz/bugfix-r3.12-js-sequence-directives
 - [x] Match numeric bundle module and chunk identities by their JavaScript value, so hexadecimal, separated and exponent literals connect to equivalent dependency references.
