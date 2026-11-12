@@ -2178,9 +2178,12 @@ Owner: open · Status: in progress
       — claimed: NicolasBohn, branch bugfix/r3.12-sourcemap-entry-bounds
 - [x] Bound the number of index-map sections the source-map parser keeps; each section, even an empty external one, still becomes a map of its own.
       — claimed: NicolasBohn, branch bugfix/r3.12-sourcemap-entry-bounds-review
-- [ ] A malformed source map (`BadJson`, `BadVersion`, bad mappings or sections) and a stand-alone `.map` file without a
+- [x] A malformed source map (`BadJson`, `BadVersion`, bad mappings or sections) and a stand-alone `.map` file without a
       comment pointing at it still leave their sources looking absent in an application graph: say they couldn't be read,
       so a source comparison doesn't confirm those sources missing.
+      — claimed: NicolasBohn, branch bugfix/r3.12-unreadable-source-maps
+- [ ] A source map refused for bad mappings or sections still has a readable `sources` list: keep those sources with a
+      warning instead of reporting the whole map unreadable.
 - [x] Keep source map annotation URL suffixes intact.
       — claimed: Plastic-time, branch rrfz/bugfix-r3.12-annotation-20261110
 - [x] Keep DOS relocations inside the declared executable header.
